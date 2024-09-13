@@ -15,18 +15,14 @@ const User = require("./models/user.model.js");
 // MIDDLEWARE
 app.use(express.json());
 app.use(cors());
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+
 
 // ROUTES
 app.use("/api/product", productRoute);
 app.use("/api/user", userRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/product-images", productImages);
-app.use('/upload/images/', express.static('./upload/images'));
+app.use('/upload/images', express.static('./upload/images'));
 
 // EXPRESS MAIN ENDPOINT TEST
 app.get("/", (req, res) => {
