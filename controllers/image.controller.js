@@ -16,8 +16,11 @@ const storageUpload = (req, file, cb) => {
 };
 
 const uploadImage = (req, res) => {
-    console.log('in backend uploadimg');
-    const basePath = `${req.protocol}://${req.get('host')}/upload/images/`;
+    console.log('in backend uploading');
+    //const basePath = `${req.protocol}://${req.get('host')}/upload/images/`;
+    const basePath = `/upload/images/`;
+    
+    
     res.json({
         success: 1,
         image_url: `${basePath}${fileName}`

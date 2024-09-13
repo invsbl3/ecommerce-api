@@ -26,9 +26,13 @@ const removeProduct = async (req, res) => {
     })
 }
 
+const baseUrl = 'https://ecommerce-api-ebon-five.vercel.app/';
 const allProducts = async (req, res) => {
     let products = await Product.find({});
     console.log("All Products Fetched");
+    for (i=0;i<products.length;i++){
+        products[i].image = baseUrl + products[i].image;
+    }
     res.send(products);
 }
 

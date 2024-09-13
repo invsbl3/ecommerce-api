@@ -48,7 +48,9 @@ const newProduct = async (req, res) => {
     if (!file) return res.status(400).send('No image in the request')
     const fileName = file.filename
 
-    const basePath = `${req.protocol}://${req.get('host')}/upload/images/`;
+    //const basePath = `${req.protocol}://${req.get('host')}/upload/images/`;
+    const basePath = `upload/images/`;
+    
     console.log(req.body);
     console.log(basePath, req.body.name);
 
@@ -58,7 +60,7 @@ const newProduct = async (req, res) => {
         category: req.body.category,
         new_price: req.body.new_price,
         old_price: req.body.old_price,
-        image: `${basePath}${fileName}`  // "http://localhost:3000/public/upload/image-2323232"
+        image: `${basePath}${fileName}`  // "upload/image-2323232"
     })
 
     product = await newProduct.save();
@@ -100,6 +102,7 @@ router.get('/newcollections', newCollections);
 
 router.get('/popularinwomen', popularInWomen);
 
+const baseUrl = 'https://ecommerce-api-ebon-five.vercel.app/';
 
 const getById = async (req, res) => {
     if (!mongoose.isValidObjectId(req.params.id)) {
@@ -109,6 +112,7 @@ const getById = async (req, res) => {
     if (!product) {
         return res.status(500).send({ success: false });
     }
+    product.image = baseUrl + product.image;
     res.status(200).send(product);
 }
 
