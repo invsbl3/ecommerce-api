@@ -23,7 +23,7 @@ app.use("/api/user", userRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/product-images", productImages);
 app.use('/upload/images', express.static('./upload/images'));
-app.use(express.static(__dirname));
+app.use(express.static('public'));
 
 
 // EXPRESS MAIN ENDPOINT TEST
